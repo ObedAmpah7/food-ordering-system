@@ -1,0 +1,38 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/orders.css">
+    <script src="/js/table.js" defer></script>
+    </head>
+
+    <body>
+        <%- include('../includes/mannav.ejs') %>
+        <main>
+            <% if (orders.length <= 0) { %>
+                <h1>Nothing there!</h1>
+            <% } else { %>
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+                <table id="myTable">
+                    <thead>
+                        <tr class="header">
+                            <th>Email</th>
+                            <th>Food</th>
+                            <th>Order ID</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% orders.forEach(order => { %>
+                            <tr>
+                                <td><%=order.user.email  %> </td>
+                                <td><%= order._id %></td>
+                                <% order.products.forEach(p => { %>
+                                    <td><%= p.product.title %> </td>
+                                    <td><%= p.quantity %></td>
+                                <% }); %>
+                        <% }) %>
+                            </tr>
+                    </tbody>
+                </table>
+                
+            <% } %>
+        </main>
+        <%- include('../includes/end.ejs') %>

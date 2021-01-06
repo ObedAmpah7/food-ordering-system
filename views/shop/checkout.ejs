@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/checkout.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Check Out</title>
+</head>
+<body>
+    <div class="backdrop"></div>
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item">
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Home</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/products' ? 'active' : '' %>" href="/products"></a>
+            </li>
+            <div class="dropdown">
+                <li class="main-header__item">Menu</li>
+                <div class="dropdown-content">
+                    <a href="/products">All Food</a>
+                    <a href="/today">Today's Food</a>
+                </div>
+                </div>
+            <% if (isAuthenticated) { %>
+                <li class="main-header__item">
+                    <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">Cart</a>
+                </li>
+              
+            <% } %>
+        </ul>
+        <ul class="main-header__item-list">
+            <% if (!isAuthenticated) { %>
+                <li class="main-header__item">
+                    <a class="<%= path === '/login' ? 'active' : '' %>" id='auth' href="/login">Login</a>
+                </li>
+                <li class="main-header__item">
+                    <a class="<%= path === '/signup' ? 'active' : '' %>" id='auth' href="/signup">Register</a>
+                </li>
+            <% } else { %>
+                <li class="main-header__item">
+                    <form action="/logout" method="post">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button type="submit" id="auth">Logout</button>
+                    </form>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+</header>
+
+<nav class="mobile-nav">
+    <ul class="mobile-nav__item-list">
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/' ? 'active' : '' %>" href="/">Home</a>
+        </li>
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/products' ? 'active' : '' %>" href="/products">Products</a>
+        </li>
+        <% if (isAuthenticated) { %>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">Cart</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Orders</a>
+            </li>
+            
+        <% } %>
+        <% if (!isAuthenticated) { %>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/login' ? 'active' : '' %>" id="auth" href="/login">Login</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/signup' ? 'active' : '' %>" id="auth" href="/signup">Register</a>
+            </li>
+        <% } else { %>
+            <li class="mobile-nav__item">
+                <form action="/logout" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit" >Logout</button>
+                </form>
+            </li>
+        <% } %>
+    </ul>
+</nav>
+    <section>
+        <div>
+            <form action="/" class="checkout-form">
+                
+                <div class="form-control">
+                <h1>Please Choose Payment Method</h1>
+                <div class="image-container">
+                    <img src="/images/momo.png" alt="momo">
+                    <img src="/images/tigocash.jpeg" alt="momo">
+                    <img src="/images/vodacash.png" alt="momo">
+                </div>
+                <input type="radio" id="mobile-money" name="payment-mood" value="momo">
+                <label for="mobile-money">Mobile Money</label><br>
+                <input type="radio" id="coupon" name="payment-mood" value="coupon">
+                <label for="coupon">Coupon</label><br>
+                    <label for="cnum">Input Your Coupon Number</label><br>
+                    <input type="text"><br>
+                    <button class="btn" type="submit">Order Now</button>
+                </div>
+                
+            </form>
+        </div>
+    </section>
+</body>
+</html>

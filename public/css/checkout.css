@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.checkout-form {
+  width: 20rem;
+  max-width: 90%;
+  margin: auto;
+  display: block;
+  position: absolute;
+}
+
+.form-control {
+  margin: 1rem 0;
+  padding: 5rem 9rem;
+  position: absolute;
+  top: 10vh;
+  left: 28vw;
+}
+.image-container{
+  display: flex;
+}
+
+.image-container img{
+  height: 3rem;
+  width: 3rem;
+}
+.form-control label,
+.form-control input {
+  margin-bottom: 8px;
+}
