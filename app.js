@@ -9,14 +9,14 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
-const AdminBro = require('admin-bro');
-const AdminBroExpress = require('@admin-bro/express');
-const AdminBroMongoose = require('@admin-bro/mongoose');
+// const AdminBro = require('admin-bro');
+// const AdminBroExpress = require('@admin-bro/express');
+// const AdminBroMongoose = require('@admin-bro/mongoose');
 
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-AdminBro.registerAdapter(AdminBroMongoose);
+// AdminBro.registerAdapter(AdminBroMongoose);
 const MONGODB_URI =
   'mongodb+srv://obed:pinocchio577@cluster0.263vx.mongodb.net/shop';
 
@@ -29,18 +29,18 @@ const csrfProtection = csrf();
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
-const adminBro = new AdminBro({
-  databases: [],
-  rootPath: '/admin',
-});
+// const adminBro = new AdminBro({
+//   databases: [],
+//   rootPath: '/admin',
+// });
 
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const authRoutes = require('./routes/auth');
 
-const adminrouter = AdminBroExpress.buildRouter(adminBro);
-app.use(adminBro.options.rootPath, adminrouter);
+// const adminrouter = AdminBroExpress.buildRouter(adminBro);
+// app.use(adminBro.options.rootPath, adminrouter);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
